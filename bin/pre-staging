@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -ex
+set -e
 
 git clone --branch stackato https://github.com/ingydotnet/app-termcast-server
 git clone --branch stackato https://github.com/ingydotnet/node-termcast-server

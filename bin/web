@@ -11,13 +11,15 @@ termcast_server_external_port="$(echo $STACKATO_SERVICES | json | grep '"port":'
   perl -Ilib -Icpan/lib bin/termcast-server
 ) &>> log/app-termcast-server.log &
 
-sleep 3
+sleep 10
 
 (
   cd node-termcast-server
   ./bin/server
 ) &>> log/node-termcast-server.log &
 
+perl -e 'print "\n"'
 perl -e "print 'Termcast Server Started: http://$termcast_kato_domain_name'"
 perl -e 'print "\n"'
 perl -e "print 'termcast --host $termcast_kato_domain_name --port $termcast_server_external_port'"
+perl -e 'print "\n"'
