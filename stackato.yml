@@ -7,11 +7,10 @@ framework:
   type: generic
 
 # Running two servers:
-# Node serves web pages on $PORT
-# Perl listens for termcast clients on Harbor port
+# Node serves web pages on normal $PORT.
+# Perl listens for termcast clients on Harbor port:
 services:
   app-termcast-server-port: harbor
-  node-termcast-server-port: harbor
 
 hooks:
   pre-staging: ./bin/pre-staging
@@ -19,4 +18,5 @@ hooks:
 processes:
   web: ./bin/web
 
+# Push .git/ directory:
 ignores: []
