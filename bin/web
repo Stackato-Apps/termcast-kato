@@ -1,32 +1,23 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 mkdir log
 termcast_kato_domain_name="$(echo $VCAP_APPLICATION | json | grep -A1 '"uris":' | tail -n1 | sed 's/[ "]//g')"
 termcast_server_external_port="$(echo $STACKATO_SERVICES | json | grep '"port":' | sed 's/[^0-9]//g')"
 
 (
-  set -x
   cd app-termcast-server
-  perl -Ilib -Icpan/lib bin/termcast-server &
-)
-# ) &>> log/app-termcast-server.log &
+  perl -Ilib -Icpan/lib bin/termcast-server
+) &>> log/app-termcast-server.log &
 
-sleep 5
+sleep 3
 
-# (
-#   set -x
-#   cd src/node-termcast-server
-#   ./bin/server
-# ) &>> log/node-termcast-server.log &
+(
+  cd node-termcast-server
+  ./bin/server
+) &>> log/node-termcast-server.log &
 
-python -m SimpleHTTPServer $PORT
-
-cat <<...
-
-Termcast Server Started: http://$termcast_kato_domain_name
-
-termcast --host=$termcast_kato_domain_name --port=$termcast_server_external_port
-
-...
+perl -e "print 'Termcast Server Started: http://$termcast_kato_domain_name'"
+perl -e 'print "\n"'
+perl -e "print 'termcast --host $termcast_kato_domain_name --port $termcast_server_external_port'"
