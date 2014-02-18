@@ -1,0 +1,21 @@
+name: termcast
+
+mem: 256M
+
+# Really uses Perl and Node.js
+framework:
+  type: generic
+
+# Running two servers:
+# Node serves web pages on $PORT
+# Perl listens for termcast clients on Harbor port
+services:
+  app-termcast-server-port: harbor
+
+hooks:
+  pre-staging: ./bin/pre-staging
+
+processes:
+  web: ./bin/web
+
+ignores: []
