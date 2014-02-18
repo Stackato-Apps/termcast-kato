@@ -4,3 +4,4 @@ set -ex
 
 git clone --branch stackato https://github.com/ingydotnet/app-termcast-server
 git clone --branch stackato https://github.com/ingydotnet/node-termcast-server
+(cd bin; ln -s ../app-termcast-server/cpan/bin/termcast)

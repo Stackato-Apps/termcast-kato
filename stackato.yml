@@ -11,6 +11,7 @@ framework:
 # Perl listens for termcast clients on Harbor port
 services:
   app-termcast-server-port: harbor
+  node-termcast-server-port: harbor
 
 hooks:
   pre-staging: ./bin/pre-staging
