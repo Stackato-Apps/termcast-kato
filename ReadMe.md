@@ -9,44 +9,48 @@ termcast-kato - Termcasting for Stackato
     cd termcast-kato
     stackato push -n
 
-    # …wait for server app instance to start…
-
-    # Open a browser to the server app page:
-    URL="http://$(stackato app termcast | grep Routes | sed 's/ \+/\t/g' | cut -f4)"
-    firefox "$url"
+    # Open a web browser to the server app page.
+    # Note the termcast server <address> and <port>.
 
     # Install the termcast client:
-    cpanm Termcast
+    cpanm App::Termcast
 
-    # Start termcasting your terminal session:
-    termcast "$(curl $URL/termcast-server-address)"
+    # Start termcasting one of your terminal sessions:
+    termcast --host <address> --port <port>
 
-    # The browser should now show an entry for your termcast.
+    # Your browser page should now show an entry for your termcast.
     # Click. Watch. Share. Enjoy.
 
 ## Description
 
-Termcasting is sharing your terminal session on a web page for all to see. This
-app will let you easily deploy a Termcast server on a Stackato PaaS, that you
-and others can use.
+Termcasting is sharing your terminal session on a web page for all to see.
+This app will let you easily deploy a Termcast server on a Stackato PaaS, that
+you and others can use.
 
-NOTE: The termcast session is readonly. People can watch your screen but not
-type anything.
+The termcast session is readonly. People can watch your screen but they will
+not be able to type anything.
 
 ## Installation
 
 This doc assumes you have access to a Stackato account. Just push this app and
 go to the URL for more info.
 
-Your Stackato VM will need the Harbor feature turned on, since this app needs 2
-ports (one for the web, and one for terminals to connent to it).
+Your Stackato VM will need the Harbor feature turned on, since this app needs
+2 ports (one for the web, and one for terminals to connent to it).
 
-## Notes
+## Bugs
 
 There is currently a bug where too much data from a terminal will clog the
 server. To kill a termcast server, connect to it and run something like:
 
     find /
+
+## Notes
+
+See the DevNotes.md file for information about how this works, and interesting
+notes about Stackato usage.
+
+You can find the author as 'ingy' on #stackato on irc.freenode.net.
 
 ## Author
 
