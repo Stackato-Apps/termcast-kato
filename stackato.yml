@@ -11,6 +11,7 @@ framework:
 # Perl listens for termcast clients on Harbor port:
 services:
   app-termcast-server-port: harbor
+  ${name}-mq: rabbitmq
 
 hooks:
   pre-staging: ./bin/pre-staging
