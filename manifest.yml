@@ -1,0 +1,20 @@
+applications:
+- name: termcast-kato
+  # Really uses Perl and Node.js
+  framework:
+    name: generic
+  mem: 256M
+  # Running two servers:
+  # Node serves web pages on normal $PORT.
+  # Perl listens for termcast clients on Harbor port:
+  services:
+    app-termcast-server-port:
+      type: harbor
+  stackato:
+    hooks:
+      pre-staging:
+      - ./bin/pre-staging
+    # Push .git/ directory:
+    ignores: []
+    processes:
+      web: ./bin/web
