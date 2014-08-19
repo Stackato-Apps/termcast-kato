@@ -1,8 +1,6 @@
 applications:
 - name: termcast-kato
-  # Really uses Perl and Node.js
-  framework:
-    name: generic
+  buildpack: https://github.com/ryandotsmith/null-buildpack.git
   mem: 256M
   # Running two servers:
   # Node serves web pages on normal $PORT.
@@ -16,5 +14,3 @@ applications:
       - ./bin/pre-staging
     # Push .git/ directory:
     ignores: []
-    processes:
-      web: ./bin/web
