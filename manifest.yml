@@ -8,6 +8,7 @@ applications:
   services:
     app-termcast-server-port:
       type: harbor
+  stack: cflinuxfs2
   stackato:
     hooks:
       pre-staging:
